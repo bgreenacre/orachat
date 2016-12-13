@@ -1,0 +1,9 @@
+/site/node_modules
+/site/public/storage
+/site/vendor
+/site/.idea
+Homestead.json
+Homestead.yaml
+.env
+vagrant/puphpet/config-custom.yaml
+.DS_Store
