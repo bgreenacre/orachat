@@ -7,3 +7,4 @@ Homestead.yaml
 .env
 vagrant/puphpet/config-custom.yaml
 .DS_Store
+*.sqlite

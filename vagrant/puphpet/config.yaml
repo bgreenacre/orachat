@@ -326,7 +326,7 @@ hhvm:
         error_reporting: '-1'
         date.timezone: UTC
 mariadb:
-    install: '1'
+    install: '0'
     settings:
         version: '10.1'
         root_password: '123'
@@ -392,7 +392,7 @@ redis:
     settings:
         port: '6379'
 sqlite:
-    install: '0'
+    install: '1'
     adminer: 0
     databases: {  }
 mailhog:
