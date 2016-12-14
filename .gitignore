@@ -6,5 +6,6 @@ Homestead.json
 Homestead.yaml
 .env
 vagrant/puphpet/config-custom.yaml
+.vagrant
 .DS_Store
 *.sqlite
