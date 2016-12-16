@@ -31,7 +31,7 @@ class ChatModel extends Model
      */
 	public function messages()
 	{
-		return $this->hasMany('Ora\Chat\Messages\MessageModel', 'messages', 'chat_id');
+		return $this->hasMany('Ora\Chat\Messages\MessageModel', 'chat_id');
 	}
 
 	/**
@@ -42,7 +42,7 @@ class ChatModel extends Model
 	 */
 	public function user()
 	{
-		return $this->belongsTo('Ora\Chat\Users\UserModel', 'users', 'user_id');
+		return $this->belongsTo('Ora\Chat\Users\UserModel', 'user_id');
 	}
 
 }

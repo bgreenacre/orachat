@@ -39,7 +39,7 @@ class UserModel extends Authenticatable
      */
     public function chats()
     {
-        return $this->hasMany('Ora\Chat\Chats\ChatModel', 'chats', 'user_id');
+        return $this->hasMany('Ora\Chat\Chats\ChatModel', 'user_id');
     }
 
     /**
@@ -49,7 +49,7 @@ class UserModel extends Authenticatable
      */
     public function messages()
     {
-    	return $this->hasMany('Ora\Chat\Messages\MessageModel', 'messages', 'user_id');
+    	return $this->hasMany('Ora\Chat\Messages\MessageModel', 'user_id');
     }
 
 }
