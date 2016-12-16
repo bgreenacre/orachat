@@ -53,6 +53,14 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
             'prefix' => 'api',
         ], function ($router) {
+            $router->get('users/me', 'UsersController@me');
+            $router->put('users/me', 'UsersController@edit');
+            $router->post('users/login', 'UsersController@login');
+            $router->post('users/register', 'UsersController@register');
+            $router->get('chats/{chat_id}/messages', 'MessagesController@list');
+            $router->post('chats/{chat_id}/messages', 'MessagesController@create');
+            $router->get('chats', 'ChatsController@list');
+            $router->post('chats', 'ChatsController@create');
         });
     }
 }
