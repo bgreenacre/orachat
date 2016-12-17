@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Ora\Chat\User::class,
+            'model' => Ora\Chat\Users\UserModel::class,
         ],
 
         // 'users' => [

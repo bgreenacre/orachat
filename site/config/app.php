@@ -173,6 +173,7 @@ return [
          * Application Service Providers...
          */
         Ora\Chat\Providers\AppServiceProvider::class,
+        Ora\Chat\Providers\RouteServiceProvider::class,
 
     ],
 
