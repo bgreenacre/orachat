@@ -121,7 +121,7 @@ nginx:
     vhosts:
         nxv_81tuak8802b9:
             server_name: ora.chat.local
-            www_root: /var/www/orachat
+            www_root: /var/www/orachat/public
             listen_port: '80'
             client_max_body_size: 1m
             ssl: '0'
@@ -130,7 +130,7 @@ nginx:
             ssl_port: '443'
             ssl_protocols: ''
             ssl_ciphers: ''
-            rewrite_to_https: '1'
+            rewrite_to_https: '0'
             spdy: '1'
             locations:
                 nxvl_6mq30feayjd2:
