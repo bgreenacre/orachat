@@ -23,8 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
+        $router = $this->app->make(Router::class);
+        $router->pattern('chat_id', '[0-9]+');
+        
         parent::boot();
     }
 
