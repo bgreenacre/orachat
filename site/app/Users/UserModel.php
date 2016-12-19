@@ -29,7 +29,7 @@ class UserModel extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'last_update',
+        'password', 'remember_token', 'updated_at', 'created_id'
     ];
 
     /**

@@ -38,16 +38,19 @@ class UsersController extends Controller
 
         try {
             // attempt to verify the credentials and create a token for the user
-            if (! $token = $this->auth->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+            if ( ! $token = $this->auth->attempt($credentials)) {
+                return response()->payload(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->payload(['error' => 'could_not_create_token'], 500);
         }
 
+        $user = $this->auth->toUser($token)->toArray();
+        $user['token'] = $token;
+
         // all good so return the token
-        return response()->json(compact('token'));
+        return response()->payload($user);
 	}
 
 }
