@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
                 return $response->json($payload, $status);
             }
         );
+
+        $this->bindObservers()
     }
 
     /**
@@ -39,4 +41,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    protected function bindObservers()
+    {
+        \Ora\Chat\Users\UserModel::observe($this->app->make(\Ora\Chat\Users\UserValidator::class));
+    }
+
 }

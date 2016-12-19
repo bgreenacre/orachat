@@ -3,6 +3,7 @@
 namespace Ora\Chat\Exceptions;
 
 use Exception;
+use Ora\Chat\Exceptions\StorageValidationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -44,10 +45,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-            return response()->payload(['token_expired'], false, $e->getStatusCode());
-        } else if ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-            return response()->payload(['token_invalid'], false, $e->getStatusCode());
+        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException)
+        {
+            return response()->payload(['error' => 'token_expired'], false, $e->getStatusCode());
+        }
+        elseif ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException)
+        {
+            return response()->payload(['error' => 'token_invalid'], false, $e->getStatusCode());
+        }
+        elseif ($e instanceof Tymon\JWTAuth\Exceptions\JWTException)
+        {
+            return response()->payload(['error' => 'token_absent'], false, $e->getStatusCode());
+        }
+        elseif ($e instanceof StorageValidationException)
+        {
+            return response()->payload(['error' => $e->errors()], false, $e->getStatusCode());
         }
         else
         {

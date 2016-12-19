@@ -3,9 +3,12 @@
 namespace Ora\Chat\Users;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Ora\Chat\Traits\EloquentRulesAndErrorsTrait;
 
 class UserModel extends Authenticatable
 {
+
+    use EloquentRulesAndErrorsTrait;
 
 	/**
 	 * Name of the table used in the schema.

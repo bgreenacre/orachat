@@ -5,30 +5,59 @@ namespace Ora\Chat\Http\Controllers;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Ora\Chat\Users\UserModel;
 
 class UsersController extends Controller
 {
 
 	protected $auth;
+	protected $userModel;
 
-	public function __construct(JWTAuth $auth)
+	public function __construct(JWTAuth $auth, UserModel $userModel)
 	{
 		$this->auth = $auth;
+		$this->userModel = $userModel;
 	}
 
 	public function me(Request $request)
 	{
-		//
+        if ( ! $user = $this->auth->parseToken()->authenticate()) {
+            return response()->payload(['error' => 'user_not_found'], false, 404);
+        }
+
+	    $user = $user->toArray();
+	    $user['token'] = $this->auth->getToken();
+
+	    // the token is valid and we have found the user via the sub claim
+	    return response()->payload($user);
 	}
 
 	public function edit(Request $request)
 	{
-		//
+        if ( ! $user = $this->auth->parseToken()->authenticate()) {
+            return response()->payload(['error' => 'user_not_found'], false, 404);
+        }
+
+		$user = $this->userModel
+			->update($request->all());
+
+		$user = $user->toArray();
+		$user['token'] = $token;
+
+		return response()->payload($user, true, 201);
 	}
 
 	public function register(Request $request)
 	{
-		//
+		echo '3333';exit;
+		$user = $this->userModel
+			->create($request->all());
+
+		$token = $this->auth->fromUser($user);
+		$user = $user->toArray();
+		$user['token'] = $token;
+
+		return response()->payload($user, true, 201);
 	}
 
 	public function login(Request $request)
